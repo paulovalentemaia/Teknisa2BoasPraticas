@@ -1,26 +1,26 @@
-var playerAtaque = async(personagem, inimigo) => {
-    if (getMouseBotaoPressionado()) {
-        var movimento = getMovimento(personagem.movement);
+var playerAttack = async(character, enemy) => {
+    if (getMouseButtonDown()) {
+        var movement = getMovement(character.movement);
 
-        if (!isCorrendo(movimento)) {
-            var acao = getAcao(personagem.action);
+        if (!isSprinting(movement)) {
+            var action = getAction(character.action);
 
-            if (!isBloqueando(acao)) {
-                personagem.status.dano = personagem.offense * personagem.level;
-                personagem.status.defesa = personagem.defense * personagem.level;
-                personagem.status.critico = personagem.critChance;
+            if (!isBlocking(action)) {
+                character.status.offense = character.offense * character.level;
+                character.status.defense = character.defense * character.level;
+                character.status.crit = character.critChance;
 
-                inimigo.status.dano = inimigo.offense * inimigo.level;
-                inimigo.status.defesa = inimigo.defense * inimigo.level;
-                inimigo.status.critico = inimigo.critChance;
+                enemy.status.offense = enemy.offense * enemy.level;
+                enemy.status.defense = enemy.defense * enemy.level;
+                enemy.status.crit = enemy.critChance;
 
-                var dano = await ataque(personagem, inimigo);
-                console.log('Personagem ' + personagem.name + ' causou ' + dano + ' de dano ao inimigo ' + inimigo.name);
+                var damage = await attack(character, enemy);
+                console.log('Character ' + character.name + ' caused ' + damage + ' damage on the enemy ' + enemy.name);
             } else{
-                console.log('Não pode atacar enquanto está bloqueando!');
+                console.log('Cannot attack while blocking!');
             }
         } else{
-            console.log('Não pode atacar enquanto está correndo!');
+            console.log('Cannot attack while sprinting!');
         }
     }
 }
