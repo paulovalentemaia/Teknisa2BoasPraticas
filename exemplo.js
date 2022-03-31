@@ -1,9 +1,9 @@
-var playerAttack = async(character, enemy) => {
+const playerAttack = async(character, enemy) => {
     if (getMouseButtonDown()) {
-        var movement = getMovement(character.movement);
+        const movement = getMovement(character.movement);
 
         if (!isSprinting(movement)) {
-            var action = getAction(character.action);
+            const action = getAction(character.action);
 
             if (!isBlocking(action)) {
                 character.status.offense = character.offense * character.level;
@@ -14,7 +14,7 @@ var playerAttack = async(character, enemy) => {
                 enemy.status.defense = enemy.defense * enemy.level;
                 enemy.status.crit = enemy.critChance;
 
-                var damage = await attack(character, enemy);
+                const damage = await attack(character, enemy);
                 console.log('Character ' + character.name + ' caused ' + damage + ' damage on the enemy ' + enemy.name);
             } else{
                 console.log('Cannot attack while blocking!');
